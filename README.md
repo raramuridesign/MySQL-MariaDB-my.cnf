@@ -4,8 +4,8 @@ This file is based on the Gist by Fotis (https://gist.github.com/fevangelou) whi
 
 Gist info: https://gist.github.com/fevangelou/0da9941e67a9c9bb2596
 
-The trouble we had was that the settings contained in the Gist are not optimised for a custom server setup,
-so with some trial an error we have created this mariadb_[your.serverhost].cnf file which you can use.
+The challenge we had was that the settings contained caused some issues on a custom server setup,
+so with some testing we have created this mariadb_[your.serverhost].cnf file which can be a starting point.
 
 ## Server Environment
 
