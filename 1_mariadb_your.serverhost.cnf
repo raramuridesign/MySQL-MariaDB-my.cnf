@@ -1,0 +1,64 @@
+##########################################################
+# MariaDB-specific config file
+# Read by /etc/mysql/my.cnf
+# SERVER ENVIRONMENT
+#   8 Core / 30GB RAM
+#   Ubuntu 18/20
+#   NGiNX
+#   MariaDB
+#   HTTPD/Apache
+##########################################################
+[mysqld]
+# === Required Settings ===
+max_allowed_packet              = 256M
+max_connect_errors              = 1000000
+
+# === InnoDB Settings ===
+innodb_file_per_table           = 1
+innodb_flush_log_at_trx_commit  = 0
+innodb_flush_method             = O_DIRECT
+innodb_log_buffer_size          = 16M
+innodb_log_file_size            = 1G
+innodb_stats_on_metadata        = 0
+
+innodb_read_io_threads          = 64
+innodb_write_io_threads         = 64
+
+# === MyISAM Settings ===
+low_priority_updates            = 1
+concurrent_insert               = 2
+
+# === Connection Settings ===
+max_connections                 = 40   # Important: high no. of connections = high RAM consumption
+
+back_log                        = 512
+thread_cache_size               = 100
+thread_stack                    = 192K
+
+interactive_timeout             = 180
+wait_timeout                    = 180
+
+# === Table Settings ===
+max_heap_table_size             = 128M  # Increase to 256M or 512M if you have lots of temporary tables because of missing indices in JOINs
+tmp_table_size                  = 128M  # Use same value as max_heap_table_size
+
+# === Search Settings ===
+ft_min_word_len                 = 3     # Minimum length of words to be indexed for search results
+
+# === Binary Logging ===
+disable_log_bin                 = 1     # Binary logging disabled by default
+
+# === Error & Slow Query Logging ===
+log_error                       = /var/lib/mysql/mysql_error.log
+log_queries_not_using_indexes   = 0     # Disabled on production
+long_query_time                 = 5
+slow_query_log                  = 0     # Disabled on production
+slow_query_log_file             = /var/lib/mysql/mysql_slow.log
+
+[mysqldump]
+# Variable reference
+# For MySQL 5.7+:  https://dev.mysql.com/doc/refman/5.7/en/mysqldump.html
+# For MariaDB:     https://mariadb.com/kb/en/library/mysqldump/
+quick
+quote_names
+max_allowed_packet              = 1024M
