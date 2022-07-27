@@ -20,6 +20,10 @@ so with some trial an error we have created this mariadb_[your.serverhost].cnf f
 Typically this is a custom file you create and is normally located at `/etc/mysql/conf.d/` 
 You will need to create the a custom file example: `my.cnf` (We normally call this the host name of the server for easier reference)
 
-### Important
+## Testing and Feedback
+
+If you would like to contribute different setups - open a pull request and follow the same format as the example file, so others may learn.
+
+## Important
 
 This file is not intended to be used out of the box. Always ensure you test and change values according to your environment.
